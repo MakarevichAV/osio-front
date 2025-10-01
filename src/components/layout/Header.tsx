@@ -18,21 +18,19 @@ export function Header({ userType, userName, onLogin }: HeaderProps) {
     };
     return (
         <header>
-            <div className="header-top flex items-center justify-between">
-                <div className="flex items-center">
-                    <div>
-                        <span className="logo1 flex text-white items-center justify-center font-bold">O</span>
+            <div className="header-top">
+                <div className="logo">
+                    <div className="logo-img">
+                        <span>O</span>
                     </div>
-                    <span className="logo-txt text-xl font-semibold">MachineControl</span>
+                    <span className="logo-txt">MachineControl</span>
                 </div>
 
-                <div className="account-info flex">
-                    <Button onClick={onLogin} variant="outline">
-                        Login
-                    </Button>
+                <div className="account-info">
+                    <div className="btn1">Login</div>
                 </div>
             </div>
-            <div className="user-info flex">
+            <div className="user-info">
                 <div className="user-stat">
                     {userType === "admin" ? "Admin" : "Operator"}
                 </div>

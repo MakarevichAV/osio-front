@@ -12,22 +12,20 @@ export function AdminControls({ isAdmin, onUsersDataSetting, onRecipeManagement 
     if (!isAdmin) return null;
 
     return (
-        <Card>
-            <CardContent>
-                <Button
+        <div className="admin-controls">
+
+                <div className="btn1"
                     onClick={onUsersDataSetting}
                 >
-                    <Settings />
                     Users data setting
-                </Button>
+                </div>
 
-                <Button
+                <div className="btn1"
                     onClick={onRecipeManagement}
                 >
-                    <BookOpen />
                     Recipe management
-                </Button>
-            </CardContent>
-        </Card>
+                </div>
+
+        </div>
     );
 }

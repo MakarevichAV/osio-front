@@ -11,27 +11,7 @@ code {
     monospace;
 }
 
-.flex {
-    display: flex;
-}
-.items-center {
-    align-items: center;
-}
-.justify-between {
-    justify-content: space-between;
-}
-.justify-center {
-    justify-content: center;
-}
-.text-white {
-    color: white;
-}
-.font-bold {
-    font-weight: bold;
-}
-.font-semibold {
-    font-weight: 600;
-}
+
 header {
     /*padding: 20px;*/
     background-color: white;
@@ -60,12 +40,8 @@ header {
     display: flex;
     justify-content: flex-end;
 
-    .card-content {
-        display: flex;
-        justify-content: flex-end;
-        padding-right: 18px;
-    }
-    button {
+
+    .btn1 {
         width: auto;
         min-width: 180px;
         svg {
@@ -74,17 +50,26 @@ header {
     }
 }
 
-.logo1 {
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo-img {
     width: 40px;
     height: 40px;
     background-color: #62bc47;
     margin-right: 10px;
     border-radius: 5px;
     font-size: 30px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .logo-txt {
     color: #295a1b;
+    font-size: 20px;
 }
 
 .bg-card {}
