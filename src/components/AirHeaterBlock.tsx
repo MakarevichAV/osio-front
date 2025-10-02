@@ -15,31 +15,26 @@ export function AirHeaterBlock() {
     };
 
     return (
-        <Card>
-            <CardHeader>
-                <CardTitle>Air Heater</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-                <div className="space-y-2">
+        <div className="card">
+            <div className="card-header">
+                <div className="card-title">Air Heater</div>
+            </div>
+            <div className="card-content">
+                <div>
                     <Label htmlFor="temperature">T°C setpoint</Label>
-                    <Input
+                    <input
                         id="temperature"
                         type="number"
                         value={setpoint}
                         onChange={(e) => setSetpoint(Number(e.target.value))}
-                        className="w-full"
+                        className="input1"
                     />
                 </div>
 
-                <Button
-                    onClick={handleStartHeating}
-                    disabled={isHeating}
-                    className="w-full"
-                    variant={isHeating ? "secondary" : "default"}
-                >
+                <div onClick={handleStartHeating}>
                     {isHeating ? "Heating..." : "Start heating"}
-                </Button>
-            </CardContent>
-        </Card>
+                </div>
+            </div>
+        </div>
     );
 }

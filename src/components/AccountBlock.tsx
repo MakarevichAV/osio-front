@@ -11,25 +11,25 @@ interface AccountBlockProps {
 
 export function AccountBlock({ userType, userName, onLogin }: AccountBlockProps) {
     return (
-        <Card className="hidden lg:block">
-            <CardHeader>
-                <CardTitle>Account</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-                <div className="space-y-2">
-                    <Label>Current user</Label>
+        <div className="card-content">
+            <div className="card-header">
+                <div className="card-title">Account</div>
+            </div>
+            <div className="card-content">
+                <div>
+                    <label>Current user</label>
                     <div className="flex items-center space-x-2">
-                        <Badge variant={userType === "admin" ? "default" : "secondary"}>
+                        <div className="read-block">
                             {userType === "admin" ? "Admin" : "Operator"}
-                        </Badge>
+                        </div>
                         <span>{userName}</span>
                     </div>
                 </div>
 
-                <Button onClick={onLogin}>
+                <div onClick={onLogin}>
                     Login
-                </Button>
-            </CardContent>
-        </Card>
+                </div>
+            </div>
+        </div>
     );
 }

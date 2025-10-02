@@ -43,27 +43,22 @@ export function ControlBlock() {
     };
 
     return (
-        <Card>
-            <CardHeader>
-                <CardTitle>Control</CardTitle>
-            </CardHeader>
-            <CardContent>
+        <div className="card">
+            <div className="card-header">
+                <div className="card-title">Control</div>
+            </div>
+            <div className="card-content">
                 <div>
-                    <Label>Process status</Label>
-                    <Badge variant={getStatusVariant()} className="block w-fit">
+                    <label>Process status</label>
+                    <div className="read-block">
                         {getStatusText()}
-                    </Badge>
+                    </div>
                 </div>
 
-                <Button
-                    onClick={handleStartWinding}
-                    disabled={isWinding}
-                    className="w-full"
-                    variant={isWinding ? "secondary" : "default"}
-                >
+                <div onClick={handleStartWinding}>
                     {isWinding ? "Running..." : "START WINDING"}
-                </Button>
-            </CardContent>
-        </Card>
+                </div>
+            </div>
+        </div>
     );
 }

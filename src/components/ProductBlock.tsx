@@ -14,27 +14,27 @@ export function ProductBlock() {
     const [selectedProduct, setSelectedProduct] = useState<string>("");
 
     return (
-        <Card>
-            <CardHeader>
-                <CardTitle>Product</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-                <div className="space-y-2">
-                    <Label htmlFor="product-select">Select product</Label>
-                    <Select value={selectedProduct} onValueChange={setSelectedProduct}>
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select product" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {products.map((product) => (
-                                <SelectItem key={product.id} value={product.id}>
-                                    {product.name}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
+        <div className="card-content">
+            <div className="card-header">
+                <div className="card-title">Product</div>
+            </div>
+            <div className="card-content">
+                <div>
+                    <label>Select product</label>
+                    <select>
+                        {/*<SelectTrigger>*/}
+                        {/*    <SelectValue placeholder="Select product" />*/}
+                        {/*</SelectTrigger>*/}
+                        {/*<SelectContent>*/}
+                        {/*    {products.map((product) => (*/}
+                        {/*        <SelectItem key={product.id} value={product.id}>*/}
+                        {/*            {product.name}*/}
+                        {/*        </SelectItem>*/}
+                        {/*    ))}*/}
+                        {/*</SelectContent>*/}
+                    </select>
                 </div>
-            </CardContent>
-        </Card>
+            </div>
+        </div>
     );
 }
