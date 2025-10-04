@@ -1,0 +1,85 @@
+.card {
+    background-color: #e1e1e1; /* светлый серый фон */
+    color: #1f1f1f; /* текст тёмный */
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 220px;
+    flex: 1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* лёгкая тень */
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.cardHeader {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 4px;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.input1 {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #1f1f1f;
+    width: 100%;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.input1:focus {
+    outline: none;
+    border-color: #00bcd4;
+    box-shadow: 0 0 4px #00bcd4;
+}
+
+/*.readBlock {*/
+/*    padding: 8px 10px;*/
+/*    border-radius: 6px;*/
+/*    background-color: #e0e0e0;*/
+/*    color: #1f1f1f;*/
+/*    font-size: 14px;*/
+/*    text-align: center;*/
+/*    cursor: pointer;*/
+/*}*/
+
+
+.btn2 {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #1f1f1f;
+    width: auto;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn3 {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #1f1f1f;
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+}

@@ -1,8 +1,5 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
-import { Label } from "./ui/label";
-import { Badge } from "./ui/badge";
+import s from "./Card.module.css"
 
 export function ControlBlock() {
     const [processStatus, setProcessStatus] = useState<"idle" | "running" | "completed">("idle");
@@ -43,19 +40,19 @@ export function ControlBlock() {
     };
 
     return (
-        <div className="card">
-            <div className="card-header">
-                <div className="card-title">Control</div>
+        <div className={s.card}>
+            <div className={s.cardHeader}>
+                <div className={s.cardtitle}>Control</div>
             </div>
-            <div className="card-content">
+            <div className={s.cardContent}>
                 <div>
                     <label>Process status</label>
-                    <div className="read-block">
+                    <div className={s.readBlock}>
                         {getStatusText()}
                     </div>
                 </div>
 
-                <div onClick={handleStartWinding}>
+                <div onClick={handleStartWinding} className={s.btn2}>
                     {isWinding ? "Running..." : "START WINDING"}
                 </div>
             </div>

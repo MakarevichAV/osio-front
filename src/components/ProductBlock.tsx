@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
-import { Label } from "./ui/label";
+import s from "./Card.module.css";
+import {SelectContent, SelectItem, SelectTrigger, SelectValue} from "./ui/select";
 
 const products = [
     { id: "product1", name: "Product A" },
@@ -14,24 +13,19 @@ export function ProductBlock() {
     const [selectedProduct, setSelectedProduct] = useState<string>("");
 
     return (
-        <div className="card-content">
-            <div className="card-header">
-                <div className="card-title">Product</div>
+        <div className={s.card}>
+            <div className={s.cardHeader}>
+                <div className={s.cardTitle}>Product</div>
             </div>
-            <div className="card-content">
+            <div className={s.cardContent}>
                 <div>
                     <label>Select product</label>
-                    <select>
-                        {/*<SelectTrigger>*/}
-                        {/*    <SelectValue placeholder="Select product" />*/}
-                        {/*</SelectTrigger>*/}
-                        {/*<SelectContent>*/}
-                        {/*    {products.map((product) => (*/}
-                        {/*        <SelectItem key={product.id} value={product.id}>*/}
-                        {/*            {product.name}*/}
-                        {/*        </SelectItem>*/}
-                        {/*    ))}*/}
-                        {/*</SelectContent>*/}
+                    <select className={s.btn3}>
+                            {products.map((product) => (
+                                <div className={s.selectItem}>
+                                    {product.name}
+                                </div>
+                            ))}
                     </select>
                 </div>
             </div>

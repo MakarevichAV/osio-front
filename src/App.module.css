@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+    justify-content: flex-start;
+}
+
+.controlBlock {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+    .controlBlock {
+        flex-direction: column;
+    }
+}

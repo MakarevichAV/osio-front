@@ -1,7 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
-import { Label } from "./ui/label";
-import { Badge } from "./ui/badge";
+import s from "./Card.module.css";
 
 interface AccountBlockProps {
     userType: "operator" | "admin";
@@ -11,22 +8,22 @@ interface AccountBlockProps {
 
 export function AccountBlock({ userType, userName, onLogin }: AccountBlockProps) {
     return (
-        <div className="card-content">
-            <div className="card-header">
-                <div className="card-title">Account</div>
+        <div className={s.card}>
+            <div className={s.cardHeader}>
+                <div className={s.cardTitle}>Account</div>
             </div>
-            <div className="card-content">
+            <div className={s.cardContent}>
                 <div>
                     <label>Current user</label>
-                    <div className="flex items-center space-x-2">
-                        <div className="read-block">
+                    <div className="">
+                        <div className={s.readBlock}>
                             {userType === "admin" ? "Admin" : "Operator"}
                         </div>
                         <span>{userName}</span>
                     </div>
                 </div>
 
-                <div onClick={onLogin}>
+                <div onClick={onLogin} className={s.btn2}>
                     Login
                 </div>
             </div>

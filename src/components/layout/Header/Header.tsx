@@ -1,6 +1,5 @@
-import { Button } from "../ui/button";
-import { Badge } from "../ui/badge";
-import {AdminControls} from "../AdminControls";
+import {AdminControls} from "../../AdminControls/AdminControls";
+import s from "./Header.module.css";
 
 interface HeaderProps {
     userType: "operator" | "admin";
@@ -17,26 +16,26 @@ export function Header({ userType, userName, onLogin }: HeaderProps) {
         alert("Navigating to recipe management page");
     };
     return (
-        <header>
-            <div className="header-top">
-                <div className="logo">
-                    <div className="logo-img">
+        <header className={s.header}>
+            <div className={s.headerTop}>
+                <div className={s.logo}>
+                    <div className={s.logoImg}>
                         <span>O</span>
                     </div>
-                    <span className="logo-txt">MachineControl</span>
+                    <span className={s.logoTxt}>MachineControl</span>
                 </div>
 
-                <div className="account-info">
-                    <div className="btn1">Login</div>
+                <div className={s.accountInfo}>
+                    <div className={s.btn1}>Login</div>
                 </div>
             </div>
-            <div className="user-info">
-                <div className="user-stat">
+            <div className={s.userInfo}>
+                <div className={s.userStat}>
                     {userType === "admin" ? "Admin" : "Operator"}
                 </div>
-                <span className="user-name">{userName}</span> &nbsp;&nbsp;
+                <span className={s.userName}>{userName}</span> &nbsp;&nbsp;
             </div>
-            <div className="header-bottom">
+            <div className={s.headerBottom}>
                 <AdminControls
                     isAdmin={userType === "admin"}
                     onUsersDataSetting={handleUsersDataSetting}

@@ -1,11 +1,12 @@
 import {useState} from "react";
 import { usePlcData } from "./hooks/usePlcData";
 import PlcList from "./components/plc/PlcList";
-import {Header} from "./components/layout/Header";
+import {Header} from "./components/layout/Header/Header";
 import { AirHeaterBlock } from "./components/AirHeaterBlock";
 import { ProductBlock } from "./components/ProductBlock";
 import { ControlBlock } from "./components/ControlBlock";
 import { AccountBlock } from "./components/AccountBlock";
+import s from "./App.module.css";
 
 function App() {
     const values = usePlcData();
@@ -25,14 +26,14 @@ function App() {
     };
 
     return (
-        <div className="App">
+        <div className={s.App}>
             <Header
                 userType={userType}
                 userName={userName}
                 onLogin={handleLogin}
             />
-            <main className="container">
-                <div className="control-block">
+            <main className={s.container}>
+                <div className={s.controlBlock}>
                     <AirHeaterBlock />
                     <ProductBlock />
                     <ControlBlock />
@@ -43,8 +44,8 @@ function App() {
                     />
                 </div>
             </main>
-            <h1>PLC Data (Real-time)</h1>
-            <PlcList values={values} />
+            {/*<h1>PLC Data (Real-time)</h1>*/}
+            {/*<PlcList values={values} />*/}
         </div>
     );
 }

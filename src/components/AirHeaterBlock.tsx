@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
 import { Label } from "./ui/label";
+import s from './Card.module.css';
 
 export function AirHeaterBlock() {
     const [setpoint, setSetpoint] = useState<number>(25);
@@ -10,16 +8,15 @@ export function AirHeaterBlock() {
 
     const handleStartHeating = () => {
         setIsHeating(true);
-        // Simulate heating process
         setTimeout(() => setIsHeating(false), 3000);
     };
 
     return (
-        <div className="card">
-            <div className="card-header">
-                <div className="card-title">Air Heater</div>
+        <div className={s.card}>
+            <div className={s.cardHeader}>
+                <div className={s.cardTitle}>Air Heater</div>
             </div>
-            <div className="card-content">
+            <div className={s.cardContent}>
                 <div>
                     <Label htmlFor="temperature">T°C setpoint</Label>
                     <input
@@ -27,11 +24,11 @@ export function AirHeaterBlock() {
                         type="number"
                         value={setpoint}
                         onChange={(e) => setSetpoint(Number(e.target.value))}
-                        className="input1"
+                        className={s.input1}
                     />
                 </div>
 
-                <div onClick={handleStartHeating}>
+                <div onClick={handleStartHeating} className={s.btn2}>
                     {isHeating ? "Heating..." : "Start heating"}
                 </div>
             </div>

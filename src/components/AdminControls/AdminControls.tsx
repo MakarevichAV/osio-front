@@ -1,6 +1,4 @@
-import { Button } from "./ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Settings, BookOpen } from "lucide-react";
+import s from './AdminControls.module.css';
 
 interface AdminControlsProps {
     isAdmin: boolean;
@@ -12,15 +10,15 @@ export function AdminControls({ isAdmin, onUsersDataSetting, onRecipeManagement 
     if (!isAdmin) return null;
 
     return (
-        <div className="admin-controls">
+        <div className={s.adminControls}>
 
-                <div className="btn1"
+                <div className={s.btn1}
                     onClick={onUsersDataSetting}
                 >
                     Users data setting
                 </div>
 
-                <div className="btn1"
+                <div className={s.btn1}
                     onClick={onRecipeManagement}
                 >
                     Recipe management
