@@ -8,7 +8,7 @@ interface AccountBlockProps {
 
 export function AccountBlock({ userType, userName, onLogin }: AccountBlockProps) {
     return (
-        <div className={s.card}>
+        <div className={`${s.card} ${s.accountBlock}`}>
             <div className={s.cardHeader}>
                 <div className={s.cardTitle}>Account</div>
             </div>
@@ -17,9 +17,8 @@ export function AccountBlock({ userType, userName, onLogin }: AccountBlockProps)
                     <label>Current user</label>
                     <div className="">
                         <div className={s.readBlock}>
-                            {userType === "admin" ? "Admin" : "Operator"}
+                            {userType === "admin" ? "ADMIN" : "OPERATOR"}:  <span>{userName}</span>
                         </div>
-                        <span>{userName}</span>
                     </div>
                 </div>
 

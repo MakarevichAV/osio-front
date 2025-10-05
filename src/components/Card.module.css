@@ -27,6 +27,8 @@
 .cardContent {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
     gap: 12px;
 }
 
@@ -62,13 +64,24 @@
     padding: 8px 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    background-color: #fff;
-    color: #1f1f1f;
+    background-color: #232323;
+    color: #ffffff;
     width: auto;
     font-size: 14px;
     text-align: center;
     cursor: pointer;
     display: inline-block;
+}
+.btn2:hover {
+    background-color: #334155;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn2:active {
+    background-color: #0f172a;
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 .btn3 {
@@ -82,4 +95,17 @@
     text-align: center;
     cursor: pointer;
     display: inline-block;
+}
+
+@media (max-width: 1090px) {
+    .accountBlock {
+        display: none;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .card {
+        max-width: 550px;
+    }
 }

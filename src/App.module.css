@@ -17,5 +17,9 @@
 @media (max-width: 900px) {
     .controlBlock {
         flex-direction: column;
+        max-width: 500px;
+    }
+    .container {
+        justify-content: center;
     }
 }
