@@ -20,7 +20,7 @@ export function Header({ userType, userName, onLogin }: HeaderProps) {
             <div className={s.headerTop}>
                 <div className={s.logo}>
                     <div className={s.logoImg}>
-                        <span>O</span>
+                        <div className={s.logoInside}></div>
                     </div>
                     <span className={s.logoTxt}>MachineControl</span>
                 </div>

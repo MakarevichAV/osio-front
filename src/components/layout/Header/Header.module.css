@@ -25,7 +25,7 @@
 .logoImg {
     width: 40px;
     height: 40px;
-    background: #00bcd4;
+    background: #61bb46;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -34,6 +34,13 @@
     font-weight: 700;
     font-size: 20px;
     box-shadow: 0 0 10px rgba(0, 188, 212, 0.25);
+}
+
+.logoInside {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: white;
 }
 
 .logoTxt {
@@ -50,8 +57,8 @@
 
 .btn1 {
     padding: 8px 18px;
-    border: 1px solid #00bcd4;
-    color: #00bcd4;
+    border: 1px solid #61bb46;
+    color: #61bb46;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.18s ease-in-out;
@@ -59,7 +66,7 @@
 }
 
 .btn1:hover {
-    background: #00bcd4;
+    background: #61bb46;
     color: #1f1f1f;
     box-shadow: 0 0 10px rgba(0, 188, 212, 0.25);
 }
@@ -78,7 +85,7 @@
 
 .userStat {
     font-weight: 500;
-    color: #00bcd4;
+    color: #61bb46;
     text-transform: uppercase;
 }
 
@@ -100,8 +107,8 @@
 
 .headerBottom button {
     background: #2c2c2c;
-    border: 1px solid #00bcd4;
-    color: #00bcd4;
+    border: 1px solid #61bb46;
+    color: #61bb46;
     padding: 8px 16px;
     border-radius: 6px;
     cursor: pointer;
@@ -110,7 +117,7 @@
 }
 
 .headerBottom button:hover {
-    background: #00bcd4;
+    background: #61bb46;
     color: #1f1f1f;
     box-shadow: 0 0 10px rgba(0, 188, 212, 0.25);
 }
@@ -166,8 +173,4 @@
         gap: 10px;
     }
 
-    .btn1::before {
-        content: "🔐";
-        margin-right: 6px;
-    }
 }
