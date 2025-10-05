@@ -15,6 +15,7 @@ interface RecipesResponse {
 
 function App() {
     const values = usePlcData();
+    // console.log(values);
 
     const [userType, setUserType] = useState<"operator" | "admin">("operator");
     const [userName, setUserName] = useState("John Smith");
@@ -53,7 +54,7 @@ function App() {
             />
             <main className={s.container}>
                 <div className={s.controlBlock}>
-                    <AirHeaterBlock />
+                    <AirHeaterBlock tempSP={values.tempSP} />
                     <ProductBlock sets={setNames} />
                     <ControlBlock />
                     <AccountBlock
@@ -67,7 +68,7 @@ function App() {
 
 
             <h1>PLC Data (Real-time)</h1>
-            <PlcList values={values} />
+            <PlcList values={values.values}  />
 
 
 

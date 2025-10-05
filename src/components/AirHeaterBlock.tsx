@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Label } from "./ui/label";
 import s from './Card.module.css';
 
-export function AirHeaterBlock() {
+type AirHeaterBlockProps = {
+    tempSP: number | null;
+};
+
+export function AirHeaterBlock({tempSP}: AirHeaterBlockProps) {
     const [setpoint, setSetpoint] = useState<number>(25);
     const [isHeating, setIsHeating] = useState(false);
-
+    useEffect(() => {
+        if (tempSP !== null && !isNaN(tempSP)) {
+            setSetpoint(tempSP);
+        }
+    }, [tempSP]);
     const handleStartHeating = () => {
         setIsHeating(true);
-        setTimeout(() => setIsHeating(false), 3000);
+        // setTimeout(() => setIsHeating(false), 3000);
     };
 
     return (
