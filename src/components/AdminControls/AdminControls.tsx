@@ -15,12 +15,14 @@ export function AdminControls({ isAdmin, onUsersDataSetting, onRecipeManagement 
                 <div className={s.btn1}
                     onClick={onUsersDataSetting}
                 >
+                    <div className="icon userSetting"></div>
                     Users data setting
                 </div>
 
                 <div className={s.btn1}
                     onClick={onRecipeManagement}
                 >
+                    <div className="icon list"></div>
                     Recipe management
                 </div>
 

@@ -3,14 +3,15 @@
     gap: 12px;
     align-items: center;
     justify-content: flex-end;
-    padding: 8px 16px;
+    flex-wrap: wrap;
+    /*padding: 8px 16px;*/
 }
 
 .btn1 {
-    background-color: #1e293b;
+    background-color: #566f62;
     color: #ffffff;
     border: none;
-    padding: 10px 18px;
+    padding: 8px 14px;
     border-radius: 8px;
     font-size: 14px;
     font-weight: 500;
@@ -18,10 +19,13 @@
     text-align: center;
     user-select: none;
     transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .btn1:hover {
-    background-color: #334155;
+    background-color: #819f90;
     transform: translateY(-1px);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
@@ -31,3 +35,5 @@
     transform: translateY(0);
     box-shadow: none;
 }
+
+

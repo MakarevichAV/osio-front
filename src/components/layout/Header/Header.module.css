@@ -122,6 +122,35 @@
     box-shadow: 0 0 10px rgba(0, 188, 212, 0.25);
 }
 
+.btn2 {
+    background-color: #566f62;
+    color: #ffffff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn2:hover {
+    background-color: #819f90;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn2:active {
+    background-color: #0f172a;
+    transform: translateY(0);
+    box-shadow: none;
+}
+
 /* Адаптивность */
 @media (max-width: 900px) {
     .headerTop {

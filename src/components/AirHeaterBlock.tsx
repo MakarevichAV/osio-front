@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Label } from "./ui/label";
+import {useEffect, useState} from "react";
+import {Label} from "./ui/label";
 import s from './Card.module.css';
 
 type AirHeaterBlockProps = {
