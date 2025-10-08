@@ -1,11 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import { Header } from "./components/layout/Header/Header";
-import { ProcessManagement } from "./pages/ProcessManagement";
-import { RecipeManagement } from "./pages/RecipeManagement";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {useState} from "react";
+import {Header} from "./components/layout/Header/Header";
+import {ProcessManagement} from "./pages/ProcessManagement";
+import {RecipeManagement} from "./pages/RecipeManagement";
 import s from "./App.module.css";
 import PlcList from "./components/plc/PlcList";
 import {usePlcData} from "./hooks/usePlcData";
+import {Footer} from "./components/layout/Footer/Footer";
 
 function App() {
     const values = usePlcData();
@@ -31,23 +32,27 @@ function App() {
                     userName={userName}
                     onLogin={handleLogin}
                 />
+                <div className={s.content}>
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                <ProcessManagement
+                                    userType={userType}
+                                    userName={userName}
+                                    onLogin={handleLogin}
+                                />
+                            }
+                        />
+                        <Route path="/recipes" element={<RecipeManagement/>}/>
+                    </Routes>
+                    <h1>PLC Data (Real-time)</h1>
+                    <PlcList values={values.values}/>
 
-                <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <ProcessManagement
-                                userType={userType}
-                                userName={userName}
-                                onLogin={handleLogin}
-                            />
-                        }
-                    />
-                    <Route path="/recipes" element={<RecipeManagement />} />
-                </Routes>
+                </div>
+                <Footer/>
             </div>
-            <h1>PLC Data (Real-time)</h1>
-            <PlcList values={values.values}  />
+
         </Router>
     );
 }

@@ -5,9 +5,20 @@ function PlcList({ values }) {
     return (
         <div>
             <h2>PLC Registers</h2>
-            {values.map((val, i) => (
-                <PlcValue key={i} label={`Register ${i}`} value={val} />
-            ))}
+            <table style={{ borderCollapse: "collapse", width: "380px" }}>
+                <thead>
+                <tr>
+                    <th style={{ border: "1px solid #ccc", padding: "8px" }}>N°reg</th>
+                    <th style={{ border: "1px solid #ccc", padding: "8px" }}>Name</th>
+                    <th style={{ border: "1px solid #ccc", padding: "8px" }}>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                {values.map((val, i) => (
+                    <PlcValue value={val} i={i} />
+                ))}
+                </tbody>
+            </table>
         </div>
     );
 }

@@ -1,0 +1,31 @@
+.footer {
+    background-color: #232323;
+    padding: 10px 20px;
+    text-align: center;
+    flex-shrink: 0; /* чтобы footer не сжимался */
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    /*max-width: 1200px;*/
+    margin: 0 auto;
+    font-size: 14px;
+}
+
+.logo {
+    /*font-weight: bold;*/
+    height: 60px;
+    width: 340px;
+    background: url("../../../assets/img/estrin-logo.png") no-repeat left center / contain;
+}
+.contact {
+    margin: 15px 0;
+}
+.contact span {
+    color: #e1e1e1;
+    margin: 10px 0;
+    margin-left: 15px;
+}
