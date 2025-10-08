@@ -1,41 +1,26 @@
-import { useState } from "react";
-import s from "./Card.module.css"
+import s from "./Card.module.css";
+import api from "../services/ApiClient";
 
-export function ControlBlock() {
-    const [processStatus, setProcessStatus] = useState<"idle" | "running" | "completed">("idle");
-    const [isWinding, setIsWinding] = useState(false);
+interface ControlBlockProps {
+    status: number;
+}
 
-    const handleStartWinding = () => {
-        setIsWinding(true);
-        setProcessStatus("running");
-
-        // Simulate winding process
-        setTimeout(() => {
-            setIsWinding(false);
-            setProcessStatus("completed");
-
-            // Reset after 2 seconds
-            setTimeout(() => {
-                setProcessStatus("idle");
-            }, 2000);
-        }, 5000);
+export function ControlBlock({status}: ControlBlockProps) {
+    const handleStartWinding = async () => {
+        const result = await api.startWinding();
     };
-
     const getStatusText = () => {
-        switch (processStatus) {
-            case "idle": return "Idle";
-            case "running": return "Running";
-            case "completed": return "Completed";
-            default: return "Unknown";
-        }
-    };
-
-    const getStatusVariant = () => {
-        switch (processStatus) {
-            case "idle": return "secondary" as const;
-            case "running": return "default" as const;
-            case "completed": return "outline" as const;
-            default: return "secondary" as const;
+        switch (status) {
+            case 0:
+                return "Not ready";
+            case 1:
+                return "Ready to start";
+            case 2:
+                return "Winding";
+            case 3:
+                return "Finished";
+            default:
+                return "Unknown";
         }
     };
 
@@ -47,13 +32,11 @@ export function ControlBlock() {
             <div className={s.cardContent}>
                 <div>
                     <label>Process status</label>
-                    <div className={s.readBlock}>
-                        {getStatusText()}
-                    </div>
+                    <input className={s.input2} value={getStatusText()} disabled/>
                 </div>
 
                 <div onClick={handleStartWinding} className={s.btn2}>
-                    {isWinding ? "Running..." : "START WINDING"}
+                    START WINDING
                 </div>
             </div>
         </div>

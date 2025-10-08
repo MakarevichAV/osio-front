@@ -1,5 +1,6 @@
 import { useState } from "react";
 import s from "./Card.module.css";
+import api from "../services/ApiClient";
 
 const products = [
     { id: "product1", name: "Product A" },
@@ -15,13 +16,14 @@ interface ProductBlockProps {
 export function ProductBlock({ sets }: ProductBlockProps) {
     // const [selectedProduct, setSelectedProduct] = useState<string>("");
     const [selectedSet, setSelectedSet] = useState<string>(sets[0] || "");
-    const handleSetChange = (newSet: string) => {
+    const handleSetChange = async (newSet: string) => {
         setSelectedSet(newSet);
+        const result = await api.sendSet(newSet);
         // отправка на сервер через fetch или WebSocket
-        fetch(`http://localhost:3001/api/sendSet/${newSet}`, { method: "POST" })
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.error(err));
+        // fetch(`http://localhost:3001/api/sendSet/${newSet}`, { method: "POST" })
+        //     .then(res => res.json())
+        //     .then(data => console.log(data))
+        //     .catch(err => console.error(err));
     };
     return (
         <div className={s.card}>

@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {Label} from "./ui/label";
 import s from './Card.module.css';
+import api from "../services/ApiClient";
 
 type AirHeaterBlockProps = {
     tempSP: number | null;
@@ -14,27 +15,29 @@ export function AirHeaterBlock({tempSP}: AirHeaterBlockProps) {
             setSetpoint(tempSP);
         }
     }, [tempSP]);
-    const handleStartHeating = () => {
-        setIsHeating(true);
-        fetch(`http://localhost:3001/api/start-heating`, { method: "POST" })
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.error(err));
+    const handleStartHeating = async() => {
+        // setIsHeating(true);
+        const result = await api.startHeating();
+        // fetch(`http://localhost:3001/api/start-heating`, { method: "POST" })
+        //     .then(res => res.json())
+        //     .then(data => console.log(data))
+        //     .catch(err => console.error(err));
         // setTimeout(() => setIsHeating(false), 3000);
     };
 
-    const handleTemperChange = (sp: number) => {
+    const handleTemperChange = async (sp: number) => {
         setSetpoint(sp);
-        fetch(`http://localhost:3001/api/set-setpoint`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ value: sp }),
-        })
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.error(err));
+        const result = await api.setSetpoint(sp);
+        // fetch(`http://localhost:3001/api/set-setpoint`, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({ value: sp }),
+        // })
+        //     .then(res => res.json())
+        //     .then(data => console.log(data))
+        //     .catch(err => console.error(err));
     }
 
     ///api/start-heating
