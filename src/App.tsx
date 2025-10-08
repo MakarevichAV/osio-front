@@ -4,8 +4,12 @@ import { Header } from "./components/layout/Header/Header";
 import { ProcessManagement } from "./pages/ProcessManagement";
 import { RecipeManagement } from "./pages/RecipeManagement";
 import s from "./App.module.css";
+import PlcList from "./components/plc/PlcList";
+import {usePlcData} from "./hooks/usePlcData";
 
 function App() {
+    const values = usePlcData();
+
     const [userType, setUserType] = useState<"operator" | "admin">("operator");
     const [userName, setUserName] = useState("John Smith");
 
@@ -42,6 +46,8 @@ function App() {
                     <Route path="/recipes" element={<RecipeManagement />} />
                 </Routes>
             </div>
+            <h1>PLC Data (Real-time)</h1>
+            <PlcList values={values.values}  />
         </Router>
     );
 }

@@ -7,7 +7,7 @@ type AirHeaterBlockProps = {
 };
 
 export function AirHeaterBlock({tempSP}: AirHeaterBlockProps) {
-    const [setpoint, setSetpoint] = useState<number>(25);
+    const [setpoint, setSetpoint] = useState<number>(0);
     const [isHeating, setIsHeating] = useState(false);
     useEffect(() => {
         if (tempSP !== null && !isNaN(tempSP)) {
@@ -16,8 +16,28 @@ export function AirHeaterBlock({tempSP}: AirHeaterBlockProps) {
     }, [tempSP]);
     const handleStartHeating = () => {
         setIsHeating(true);
+        fetch(`http://localhost:3001/api/start-heating`, { method: "POST" })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.error(err));
         // setTimeout(() => setIsHeating(false), 3000);
     };
+
+    const handleTemperChange = (sp: number) => {
+        setSetpoint(sp);
+        fetch(`http://localhost:3001/api/set-setpoint`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ value: sp }),
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.error(err));
+    }
+
+    ///api/start-heating
 
     return (
         <div className={s.card}>
@@ -31,7 +51,7 @@ export function AirHeaterBlock({tempSP}: AirHeaterBlockProps) {
                         id="temperature"
                         type="number"
                         value={setpoint}
-                        onChange={(e) => setSetpoint(Number(e.target.value))}
+                        onChange={(e) => handleTemperChange(Number(e.target.value))}
                         className={s.input1}
                     />
                 </div>
