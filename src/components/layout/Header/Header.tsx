@@ -1,38 +1,39 @@
-import { useNavigate, useLocation } from "react-router-dom";
-import { AdminControls } from "../../AdminControls/AdminControls";
+import { useState } from "react";
+import {useNavigate, useLocation} from "react-router-dom";
+import {AdminControls} from "../../AdminControls/AdminControls";
 import s from "./Header.module.css";
+import {LoginPopup} from "../../LoginPopup";
 
 interface HeaderProps {
-    userType: "operator" | "admin";
+    userType: "Operator" | "Admin";
     userName: string;
-    onLogin: () => void;
+    onLogin: (userType: "operator" | "admin", userName: string) => void;
 }
 
 export function Header({ userType, userName, onLogin }: HeaderProps) {
     const navigate = useNavigate();
-    const location = useLocation(); // узнаём текущий путь
+    const location = useLocation();
+    const [showLoginPopup, setShowLoginPopup] = useState(false);
+
+    const handleLogoClick = () => navigate("/");
+    const handleGoHome = () => navigate("/");
 
     const handleUsersDataSetting = () => {
         alert("Navigating to users data settings page");
     };
 
-    const handleRecipeManagement = () => {
-        navigate("/recipes");
-    };
+    const handleRecipeManagement = () => navigate("/recipes");
 
-    const handleGoHome = () => {
-        navigate("/"); // возвращаемся на ProcessManagement
-    };
-
-    const handleLogoClick = () => {
-        navigate("/"); // тоже домой
-    };
-
-    // Определяем, на какой странице мы сейчас
     const isRecipePage = location.pathname === "/recipes";
+
+    const handleLogout = () => {
+        // при логауте возвращаемся к оператору по умолчанию
+        onLogin("operator", "Samuel L. Jackson");
+    };
 
     return (
         <header className={s.header}>
+            {/* Верхняя часть шапки */}
             <div className={s.headerTop}>
                 <div className={s.logo} onClick={handleLogoClick}>
                     <div className={s.logoImg}>
@@ -42,21 +43,29 @@ export function Header({ userType, userName, onLogin }: HeaderProps) {
                 </div>
 
                 <div className={s.accountInfo}>
-                    <div className={s.btn1} onClick={onLogin}>
-                        {userType === "admin" ? "Logout" : "Login"}
+                    <div
+                        className={s.btn1}
+                        onClick={() => {
+                            if (userType === "Admin") handleLogout();
+                            else setShowLoginPopup(true);
+                        }}
+                    >
+                        {userType === "Admin" ? "Logout" : "Login"}
                     </div>
                 </div>
             </div>
 
+            {/* Статус пользователя */}
             <div className={s.userInfo}>
                 <div className={s.userStat}>
-                    {userType === "admin" ? "Admin" : "Operator"}
+                    {userType === "Admin" ? "Admin" : "Operator"}
                 </div>
                 <span className={s.userName}>{userName}</span>
             </div>
 
+            {/* Админские элементы внизу */}
             <div className={s.headerBottom}>
-                {userType === "admin" && !isRecipePage && (
+                {userType === "Admin" && !isRecipePage && (
                     <AdminControls
                         isAdmin={true}
                         onUsersDataSetting={handleUsersDataSetting}
@@ -73,6 +82,17 @@ export function Header({ userType, userName, onLogin }: HeaderProps) {
                     </div>
                 )}
             </div>
+
+            {/* Popup логина */}
+            {showLoginPopup && (
+                <LoginPopup
+                    onClose={() => setShowLoginPopup(false)}
+                    onSuccess={(type, name) => {
+                        onLogin(type, name);
+                        setShowLoginPopup(false);
+                    }}
+                />
+            )}
         </header>
     );
 }

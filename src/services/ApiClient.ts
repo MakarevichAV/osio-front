@@ -68,6 +68,10 @@ class ApiClient {
     getRecipes() {
         return this.get("/recipes");
     }
+
+    login(user: string, password: string) {
+        return this.post("/login", { user, password });
+    }
 }
 
 // Экземпляр для всего приложения

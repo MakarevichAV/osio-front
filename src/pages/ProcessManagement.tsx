@@ -13,7 +13,7 @@ interface RecipesResponse {
 }
 
 interface ProcessManagementProps {
-    userType: "operator" | "admin";
+    userType: "Operator" | "Admin";
     userName: string;
     onLogin: () => void;
 }

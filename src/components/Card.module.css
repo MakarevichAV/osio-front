@@ -108,6 +108,55 @@
     display: inline-block;
 }
 
+
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+}
+
+.popupHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.popupContent {
+    margin-top: 10px;
+}
+
+.popupFooter {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.errorText {
+    color: red;
+    margin-top: 5px;
+}
+
 @media (max-width: 1090px) {
     .accountBlock {
         display: none;

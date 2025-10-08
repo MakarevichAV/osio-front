@@ -10,15 +10,15 @@ import {usePlcData} from "./hooks/usePlcData";
 function App() {
     const values = usePlcData();
 
-    const [userType, setUserType] = useState<"operator" | "admin">("operator");
+    const [userType, setUserType] = useState<"Operator" | "Admin">("Operator");
     const [userName, setUserName] = useState("John Smith");
 
     const handleLogin = () => {
-        if (userType === "operator") {
-            setUserType("admin");
+        if (userType === "Operator") {
+            setUserType("Admin");
             setUserName("Administrator");
         } else {
-            setUserType("operator");
+            setUserType("Operator");
             setUserName("John Smith");
         }
     };
