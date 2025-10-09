@@ -15,7 +15,7 @@ function PlcList({ values }) {
                 </thead>
                 <tbody>
                 {values.map((val, i) => (
-                    <PlcValue value={val} i={i} />
+                    <PlcValue key={i} value={val} i={i} />
                 ))}
                 </tbody>
             </table>

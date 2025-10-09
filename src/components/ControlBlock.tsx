@@ -35,7 +35,10 @@ export function ControlBlock({status}: ControlBlockProps) {
                     <input className={s.input2} value={getStatusText()} disabled/>
                 </div>
 
-                <div onClick={handleStartWinding} className={s.btn2}>
+                <div
+                    onClick={status === 1 ? handleStartWinding : undefined}
+                    className={`${s.btn4} ${status !== 1 ? '' : s.active}`}
+                >
                     START WINDING
                 </div>
             </div>

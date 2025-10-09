@@ -1,6 +1,6 @@
 import React from "react";
 
-function PlcValue({key  , value, i}) {
+function PlcValue({value, i}) {
     let dName = "";
 
     switch (i) {

@@ -108,6 +108,33 @@
     display: inline-block;
 }
 
+.btn4 {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #aaaaaa;
+    color: #ffffff;
+    width: auto;
+    font-size: 14px;
+    text-align: center;
+    display: inline-block;
+}
+.btn4.active {
+    background-color: #232323;
+    cursor: pointer;
+}
+.btn4.active:hover {
+    background-color: #334155;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn4.active:active {
+    background-color: #0f172a;
+    transform: translateY(0);
+    box-shadow: none;
+}
+
 
 .popupOverlay {
     position: fixed;
