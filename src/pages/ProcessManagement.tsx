@@ -41,7 +41,7 @@ export function ProcessManagement({userType, userName, onLogin}: ProcessManageme
         <main className={s.container}>
             <div className={s.controlBlock}>
                 <AirHeaterBlock tempSP={values.tempSP}/>
-                <ProductBlock sets={setNames}/>
+                <ProductBlock sets={setNames} user=""/>
                 <ControlBlock status={values.values[0]} />
                 <AccountBlock
                     userType={userType}

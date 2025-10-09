@@ -11,9 +11,10 @@ const products = [
 
 interface ProductBlockProps {
     sets: string[];
+    user: string;
 }
 
-export function ProductBlock({ sets }: ProductBlockProps) {
+export function ProductBlock({ sets, user }: ProductBlockProps) {
     // const [selectedProduct, setSelectedProduct] = useState<string>("");
     const [selectedSet, setSelectedSet] = useState<string>(sets[0] || "");
     const handleSetChange = async (newSet: string) => {
