@@ -44,34 +44,34 @@ export function RecipeManagement() {
                     </div>
                 </div>
                 {/*<div>*/}
-                    <div className={s.tableWrapper}>
-                        <table className={s.table}>
-                            <thead>
-                            <tr>
-                                <th>Step №</th>
-                                <th>ΔX</th>
-                                <th>Z start</th>
-                                <th>Z end</th>
-                                <th>α</th>
-                                <th>RPM</th>
-                                <th>Idle</th>
+                <div className={s.tableWrapper}>
+                    <table className={s.table}>
+                        <thead>
+                        <tr>
+                            <th>Step №</th>
+                            <th>ΔX</th>
+                            <th>Z start</th>
+                            <th>Z end</th>
+                            <th>α</th>
+                            <th>RPM</th>
+                            <th>Idle</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {Array.from({length: 30}, (_, i) => (
+                            <tr key={i}>
+                                <td className={s.stepCell}>{i + 1}</td>
+                                <td><input type="number" className={s.input}/></td>
+                                <td><input type="number" className={s.input}/></td>
+                                <td><input type="number" className={s.input}/></td>
+                                <td><input type="number" className={s.input}/></td>
+                                <td><input type="number" className={s.input}/></td>
+                                <td><input type="number" className={s.input}/></td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            {Array.from({length: 30}, (_, i) => (
-                                <tr key={i}>
-                                    <td className={s.stepCell}>{i + 1}</td>
-                                    <td><input type="number" className={s.input}/></td>
-                                    <td><input type="number" className={s.input}/></td>
-                                    <td><input type="number" className={s.input}/></td>
-                                    <td><input type="number" className={s.input}/></td>
-                                    <td><input type="number" className={s.input}/></td>
-                                    <td><input type="number" className={s.input}/></td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
-                    </div>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
                 {/*</div>*/}
 
             </div>

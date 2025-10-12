@@ -92,44 +92,59 @@
 }
 
 .tableWrapper {
-    /*width: 100%;*/
-    /*overflow-x: auto;*/
     border-radius: 12px;
     border: 1px solid #ccc;
+    flex-grow: 1;
+    overflow-x: auto; /* ✅ чтобы при переполнении появлялся горизонтальный скролл */
+    display: block; /* ✅ не flex, иначе таблица не будет сжиматься естественно */
+    max-width: 100%; /* ✅ ограничиваем ширину */
 }
 
 .table {
-    width: 100%;
+    width: 100%; /* ✅ заставляем таблицу подстраиваться под контейнер */
     border-collapse: collapse;
     font-family: sans-serif;
     text-align: center;
+    table-layout: auto; /* можно auto или fixed, в зависимости от желаемого поведения */
 }
 
 .table th {
     background-color: #222;
     color: #fff;
-    padding: 10px;
+    padding: 5px 10px;
     border: 1px solid #444;
+    word-wrap: break-word; /* Перенос слов */
+    word-break: break-word;
+    white-space: normal;
+    min-width: 80px;
 }
 
 .table td {
     border: 1px solid #ccc;
+    /*max-width: 60px;*/
+    min-width: 30px;
+    word-wrap: break-word; /* Перенос слов */
+    word-break: break-word;
+    white-space: normal;
+    /*min-width: 80px;*/
+    overflow-x: hidden;
 }
 
 .stepCell {
-    background-color: #f3f3f3;
+    background-color: #dfdfdf;
     font-weight: 600;
     color: #333;
 }
 
 .input {
-    width: auto;
-    height: 30px;
+    width: 100%;
+    height: 25px;
     border: none;
     text-align: right;
-    padding: 5px 15px 5px 5px;
+    padding: 5px 10px 5px 5px;
     outline: none;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 .input:focus {
