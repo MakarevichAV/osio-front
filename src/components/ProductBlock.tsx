@@ -5,18 +5,19 @@ import api from "../services/ApiClient";
 
 interface ProductBlockProps {
     handleSetChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-    setSelectedSetToSheet?: (newSet: string) => void
+    // setSelectedSetToSheet?: (newSet: string) => void
+    handleSave: () => void;
 }
 
-interface ContextData {
-    sets: string[],
-    selectedSet: string,
-    setSelectedSet: React.Dispatch<React.SetStateAction<string>>;
-}
+// interface ContextData {
+//     sets: string[],
+//     selectedSet: string,
+//     setSelectedSet: React.Dispatch<React.SetStateAction<string>>;
+// }
 
-export function ProductBlock({handleSetChange, setSelectedSetToSheet}: ProductBlockProps) {
+export function ProductBlock({handleSetChange, handleSave}: ProductBlockProps) {
 
-    const {selectedSet, setSelectedSet, sets}: ContextData = useAppContext();
+    const {selectedSet, sets} = useAppContext();
 
     return (
         <div className={s.card}>
@@ -35,6 +36,11 @@ export function ProductBlock({handleSetChange, setSelectedSetToSheet}: ProductBl
                             </option>
                         ))}
                     </select>
+                    <button className={`${s.btn} ${s.type4}`}
+                            onClick={() => handleSave()}>
+                        <div className={s.icon}></div>
+                        Save data
+                    </button>
                 </div>
             </div>
         </div>

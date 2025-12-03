@@ -13,6 +13,7 @@ interface RecipesResponse {
     headers?: string[] | undefined;
     user?: string | undefined;
 }
+
 interface SetValues {
     angleValues: number[];
     deltaXValues: number[];
@@ -23,7 +24,7 @@ interface SetValues {
 }
 
 export function RecipeManagement() {
-    const {recipes, setRecipes, setName, setSetName, setSelectedSet} = useAppContext();
+    const {recipes, setRecipes, setName, setSetName, selectedSet, setSelectedSet} = useAppContext();
     const [data, setData] = useState<SetValues>({
         angleValues: [],
         deltaXValues: [],
@@ -40,24 +41,36 @@ export function RecipeManagement() {
     }, []);
     // const setNames = recipes?.headers?.slice(2) || ["No sets"];
 
-    // const handleChange = (index: number, setName: string, value: number, arrName: string) => {
-    //     // const newSets: Record<string, string>[] = [...(recipes?.sets || [])];
-    //     // newSets[index][setName] = value;
-    //     // setRecipes({...recipes, sets: newSets});
-    // }
-    const handleChange = (
-        index: number,
-        setName: string, // если нужно использовать setName внутри
-        value: string,   // из e.target.value приходит строка
-        field: keyof SetValues // 'deltaXValues' | 'zStartValues' | ...
-    ) => {
-        const numValue = parseFloat(value) || 0;
+    const handleChange = (index: number, setName: string, value: string) => {
+        const newSets: Record<string, string>[] = [...(recipes?.sets || [])];
+        newSets[index][setName] = value;
+        setRecipes({...recipes, sets: newSets});
+    }
 
-        setData((prev) => ({
-            ...prev,
-            [field]: prev[field].map((v, i) => (i === index ? numValue : v)),
-        }));
-    };
+    async function handleSave() {
+        await fetch("http://localhost:3001/api/recipes/save", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                ...recipes,
+                selectedSet
+            })
+        });
+    }
+
+    // const handleChange = (
+    //     index: number,
+    //     setName: string, // если нужно использовать setName внутри
+    //     value: string,   // из e.target.value приходит строка
+    //     field: keyof SetValues // 'deltaXValues' | 'zStartValues' | ...
+    // ) => {
+    //     const numValue = parseFloat(value) || 0;
+    //
+    //     setData((prev) => ({
+    //         ...prev,
+    //         [field]: prev[field].map((v, i) => (i === index ? numValue : v)),
+    //     }));
+    // };
 
     // const [setName, setSetName] = useState<string>('');
     const setSelectedSetToSheet = (setName: string) => {
@@ -71,15 +84,22 @@ export function RecipeManagement() {
         console.log(recipes)
         setSelectedSetToSheet?.(e.target.value);
     };
+    const handleAddNewSet = () => {
+        console.log('adding new recipe');
+    }
 
     return (
         <main className={s.container}>
             <div className={s.controlBlock}>
                 {/*<ProductBlock sets={setNames} user="admin"/>*/}
                 <div className={s.controlPanel}>
-                    <ProductBlock handleSetChange={handleSetChange} setSelectedSetToSheet={setSelectedSetToSheet}/>
+                    <ProductBlock
+                        handleSetChange={handleSetChange}
+                        handleSave={handleSave}
+                    />
                     <div className={s.buttonsBlock}>
-                        <button className={`${s.btn} ${s.type1}`}>
+                        <button className={`${s.btn} ${s.type1}`}
+                                onClick={() => handleAddNewSet()}>
                             <div className={s.icon}></div>
                             Add new set
                         </button>
@@ -91,10 +111,11 @@ export function RecipeManagement() {
                             <div className={s.icon}></div>
                             Restore data
                         </button>
-                        <button className={`${s.btn} ${s.type4}`}>
-                            <div className={s.icon}></div>
-                            Save data
-                        </button>
+                        {/*<button className={`${s.btn} ${s.type4}`}*/}
+                        {/*        onClick={() => handleSave()}>*/}
+                        {/*    <div className={s.icon}></div>*/}
+                        {/*    Save data*/}
+                        {/*</button>*/}
                     </div>
                 </div>
                 {/*<div>*/}
@@ -117,51 +138,51 @@ export function RecipeManagement() {
                             {/* 151-180 */}
                         </tr>
                         </thead>
-                        <tbody>
-                        {
-                            Array.from({length: 30}, (_, i) => (
-                                <tr key={i}>
-                                    <td className={s.stepCell}>{i + 1}</td>
-                                    <td>
-                                        <input type="number"
-                                               className={s.input}
-                                               value={data.deltaXValues[i]}
-                                               onChange={(e) => handleChange(i, setName, e.target.value, 'deltaXValues')}/>
-                                    </td>
-                                    <td>
-                                        <input type="number"
-                                               className={s.input}
-                                               value={data.zStartValues[i]}
-                                               onChange={(e) => handleChange(i, setName, e.target.value, 'zStartValues')}/>
-                                    </td>
-                                    <td>
-                                        <input type="number"
-                                               className={s.input}
-                                               value={data.zEndValues[i]}
-                                               onChange={(e) => handleChange(i, setName, e.target.value, 'zEndValues')}/>
-                                    </td>
-                                    <td>
-                                        <input type="number"
-                                               className={s.input}
-                                               value={data.angleValues[i]}
-                                               onChange={(e) => handleChange(i, setName, e.target.value, 'angleValues')}/>
-                                    </td>
-                                    <td>
-                                        <input type="number"
-                                               className={s.input}
-                                               value={data.rpmValues[i]}
-                                               onChange={(e) => handleChange(i, setName, e.target.value, 'rpmValues')}/>
-                                    </td>
-                                    <td>
-                                        <input type="number"
-                                               className={s.input}
-                                               value={data.idle[i]}
-                                               onChange={(e) => handleChange(i, setName, e.target.value, 'idle')}/>
-                                    </td>
+                        {/*<tbody>*/}
+                        {/*{*/}
+                        {/*    Array.from({length: 30}, (_, i) => (*/}
+                        {/*        <tr key={i}>*/}
+                        {/*            <td className={s.stepCell}>{i + 1}</td>*/}
+                        {/*            <td>*/}
+                        {/*                <input type="number"*/}
+                        {/*                       className={s.input}*/}
+                        {/*                       value={data.deltaXValues[i]}*/}
+                        {/*                       onChange={(e) => handleChange(i, setName, e.target.value, 'deltaXValues')}/>*/}
+                        {/*            </td>*/}
+                        {/*            <td>*/}
+                        {/*                <input type="number"*/}
+                        {/*                       className={s.input}*/}
+                        {/*                       value={data.zStartValues[i]}*/}
+                        {/*                       onChange={(e) => handleChange(i, setName, e.target.value, 'zStartValues')}/>*/}
+                        {/*            </td>*/}
+                        {/*            <td>*/}
+                        {/*                <input type="number"*/}
+                        {/*                       className={s.input}*/}
+                        {/*                       value={data.zEndValues[i]}*/}
+                        {/*                       onChange={(e) => handleChange(i, setName, e.target.value, 'zEndValues')}/>*/}
+                        {/*            </td>*/}
+                        {/*            <td>*/}
+                        {/*                <input type="number"*/}
+                        {/*                       className={s.input}*/}
+                        {/*                       value={data.angleValues[i]}*/}
+                        {/*                       onChange={(e) => handleChange(i, setName, e.target.value, 'angleValues')}/>*/}
+                        {/*            </td>*/}
+                        {/*            <td>*/}
+                        {/*                <input type="number"*/}
+                        {/*                       className={s.input}*/}
+                        {/*                       value={data.rpmValues[i]}*/}
+                        {/*                       onChange={(e) => handleChange(i, setName, e.target.value, 'rpmValues')}/>*/}
+                        {/*            </td>*/}
+                        {/*            <td>*/}
+                        {/*                <input type="number"*/}
+                        {/*                       className={s.input}*/}
+                        {/*                       value={data.idle[i]}*/}
+                        {/*                       onChange={(e) => handleChange(i, setName, e.target.value, 'idle')}/>*/}
+                        {/*            </td>*/}
 
-                                </tr>
-                            ))
-                        }
+                        {/*        </tr>*/}
+                        {/*    ))*/}
+                        {/*}*/}
 
                         {/*{!recipes ? Array.from({length: 30}, (_, i) => (*/}
                         {/*        <tr key={i}>*/}
@@ -230,48 +251,46 @@ export function RecipeManagement() {
                         {/*    ))*/}
                         {/*}*/}
 
-                        </tbody>
-
-
-
-                        {/*<tbody>*/}
-                        {/*{!recipes*/}
-                        {/*    ? Array.from({length: 30}, (_, rowIndex) => (*/}
-                        {/*        <tr key={rowIndex}>*/}
-                        {/*            <td className={s.stepCell}>{rowIndex + 1}</td>*/}
-                        {/*            {Array.from({length: 6}, (_, colIndex) => (*/}
-                        {/*                <td key={colIndex}>*/}
-                        {/*                    <input type="number" className={s.input}/>*/}
-                        {/*                </td>*/}
-                        {/*            ))}*/}
-                        {/*        </tr>*/}
-                        {/*    ))*/}
-                        {/*    : (() => {*/}
-                        {/*        const rowCount = 30;*/}
-                        {/*        const colOffsets = [30, 60, 90, 0, 120, 150]; // порядок соответствует твоим колонкам: i+90, i, i+30...*/}
-                        {/*        return Array.from({length: rowCount}, (_, rowIndex) => (*/}
-                        {/*            <tr key={rowIndex}>*/}
-                        {/*                <td className={s.stepCell}>{rowIndex + 1}</td>*/}
-                        {/*                {colOffsets.map((offset, colIndex) => {*/}
-                        {/*                    const item = recipes.sets[rowIndex + offset];*/}
-                        {/*                    return (*/}
-                        {/*                        <td key={colIndex}>*/}
-                        {/*                            <input*/}
-                        {/*                                type="number"*/}
-                        {/*                                className={s.input}*/}
-                        {/*                                value={item?.[setName] || ""}*/}
-                        {/*                                onChange={(e) =>*/}
-                        {/*                                    handleChange(rowIndex + offset, setName, e.target.value)*/}
-                        {/*                                }*/}
-                        {/*                            />*/}
-                        {/*                        </td>*/}
-                        {/*                    );*/}
-                        {/*                })}*/}
-                        {/*            </tr>*/}
-                        {/*        ));*/}
-                        {/*    })()}*/}
                         {/*</tbody>*/}
 
+
+                        <tbody>
+                        {!recipes
+                            ? Array.from({length: 30}, (_, rowIndex) => (
+                                <tr key={rowIndex}>
+                                    <td className={s.stepCell}>{rowIndex + 1}</td>
+                                    {Array.from({length: 6}, (_, colIndex) => (
+                                        <td key={colIndex}>
+                                            <input type="number" className={s.input}/>
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))
+                            : (() => {
+                                const rowCount = 30;
+                                const colOffsets = [30, 60, 90, 0, 120, 150]; // порядок соответствует твоим колонкам: i+90, i, i+30...
+                                return Array.from({length: rowCount}, (_, rowIndex) => (
+                                    <tr key={rowIndex}>
+                                        <td className={s.stepCell}>{rowIndex + 1}</td>
+                                        {colOffsets.map((offset, colIndex) => {
+                                            const item = recipes.sets[rowIndex + offset];
+                                            return (
+                                                <td key={colIndex}>
+                                                    <input
+                                                        type="number"
+                                                        className={s.input}
+                                                        value={item?.[setName] || ""}
+                                                        onChange={(e) =>
+                                                            handleChange(rowIndex + offset, setName, e.target.value)
+                                                        }
+                                                    />
+                                                </td>
+                                            );
+                                        })}
+                                    </tr>
+                                ));
+                            })()}
+                        </tbody>
 
 
                     </table>

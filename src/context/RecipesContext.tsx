@@ -23,7 +23,7 @@ export const Provider: React.FC<{ children: React.ReactNode }> = ({ children }) 
     const [recipes, setRecipes] = useState<RecipesResponse | null>(null);
     const [setName, setSetName] = useState('');
     const sets = recipes?.headers?.slice(2) || ["No sets"];
-    const [selectedSet, setSelectedSet] = useState<string>(sets[0] || ""); //recipes?.headers?.slice(2) || ["No sets"];
+    const [selectedSet, setSelectedSet] = useState<string>(sets[0] || "");
 
     return (
         <Context.Provider value={{ recipes, setRecipes, setName, setSetName, selectedSet, setSelectedSet, sets}}>
