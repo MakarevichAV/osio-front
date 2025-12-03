@@ -1,18 +1,23 @@
-import { useState } from "react";
+import React, {useState} from "react";
+import {useAppContext} from '../context/RecipesContext';
 import s from "./Card.module.css";
 import api from "../services/ApiClient";
 
 interface ProductBlockProps {
-    sets: string[];
-    user: string;
+    handleSetChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    setSelectedSetToSheet?: (newSet: string) => void
 }
 
-export function ProductBlock({ sets, user }: ProductBlockProps) {
-    const [selectedSet, setSelectedSet] = useState<string>(sets[0] || "");
-    const handleSetChange = async (newSet: string) => {
-        setSelectedSet(newSet);
-        const result = await api.sendSet(newSet);
-    };
+interface ContextData {
+    sets: string[],
+    selectedSet: string,
+    setSelectedSet: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export function ProductBlock({handleSetChange, setSelectedSetToSheet}: ProductBlockProps) {
+
+    const {selectedSet, setSelectedSet, sets}: ContextData = useAppContext();
+
     return (
         <div className={s.card}>
             <div className={s.cardHeader}>
@@ -22,12 +27,13 @@ export function ProductBlock({ sets, user }: ProductBlockProps) {
                 <div>
                     <label>Select product</label>s
                     <select className={s.btn3} value={selectedSet}
-                            onChange={(e) => handleSetChange(e.target.value)}>
-                            {sets.map((set, index) => (
-                                <option key={index} value={set}>
-                                    {set}
-                                </option>
-                            ))}
+                            onChange={handleSetChange}>
+                        <option>Select set</option>
+                        {sets.map((set: string, index: number) => (
+                            <option key={index} value={set}>
+                                {set}
+                            </option>
+                        ))}
                     </select>
                 </div>
             </div>

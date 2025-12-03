@@ -6,6 +6,7 @@ import s from "../App.module.css";
 import {usePlcData} from "../hooks/usePlcData";
 import {useEffect, useState} from "react";
 import api from "../services/ApiClient";
+import {useAppContext} from "../context/RecipesContext";
 
 interface RecipesResponse {
     headers: string[];
@@ -21,7 +22,7 @@ interface ProcessManagementProps {
 export function ProcessManagement({userType, userName, onLogin}: ProcessManagementProps) {
     const values = usePlcData();
     const [recipes, setRecipes] = useState<RecipesResponse | null>(null);
-
+    const {setSetName, setSelectedSet} = useAppContext();
     useEffect(() => {
         const fetchRecipes = async () => {
             const result = await api.getRecipes();
@@ -36,12 +37,19 @@ export function ProcessManagement({userType, userName, onLogin}: ProcessManageme
     }, []);
 
     const setNames = recipes?.headers.slice(2) || ["No sets"];
-
+    const setSelectedSetToSheet = (setName: string) => {
+        setSetName(setName);
+    };
+    const handleSetChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedSet(e.target.value);
+        const result = await api.sendSet(e.target.value);
+        setSelectedSetToSheet?.(e.target.value);
+    };
     return (
         <main className={s.container}>
             <div className={s.controlBlock}>
                 <AirHeaterBlock tempSP={values.tempSP}/>
-                <ProductBlock sets={setNames} user=""/>
+                <ProductBlock handleSetChange={handleSetChange}/>
                 <ControlBlock status={values.values[0]} />
                 <AccountBlock
                     userType={userType}
